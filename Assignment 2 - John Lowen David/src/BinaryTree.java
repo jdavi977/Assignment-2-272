@@ -42,7 +42,7 @@ public class BinaryTree {
         }
 
         TreeNode parent = node.parent;
-        // This checks if the parent node has a right node, if it doesn't the next node will be the parent.
+        // This checks if the parent node has a right node, if it doesn't then the next node will be the parent.
         if (parent.right == null || parent.right == node) {
             return parent;
         } else {
@@ -87,4 +87,37 @@ public class BinaryTree {
             return current.parent;
         }
     }
+    
+    /**
+     * Checks if the binary tree satisfies the search tree order property.
+     *
+     * @param root is the root node of the binary tree.
+     * @return true or false depending if the tree satisfies the the search tree order at every node.
+     */
+    public static boolean propertyChecker(TreeNode root) {
+        return propertycheckHelp(root, null, null);
+    }
+
+    /**
+     * Helper method to check if the tree satisfies the search tree order property.
+     *
+     * @param node is the current node
+     * @param min is the value that the right current node must be greater than.
+     * @param max is the value that the left current node must be less than.
+     * @return true or false depending if the subtree rooted at node satisfies the search tree order property.
+     */
+    private static boolean propertycheckHelp(TreeNode node, Integer min, Integer max) {
+        if (node == null) {
+            return true;
+        }
+        
+        // Depending if the child is in the left or right side we check if the node value is above or below the min or max.
+        if ((min != null && node.value <= min) || (max != null && node.value >= max)) {
+            return false;
+        }
+        
+        // We recursively travel through the left and right subtree
+        return propertycheckHelp(node.left, min, node.value) && propertycheckHelp(node.right, node.value, max);
+    }
+    
 }

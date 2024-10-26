@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 /**
- * A hash table implementation that uses linear probing to handle collisions.
+ * A hash table implementation that uses linear probing.
  */
 public class HashTable {
     /**
@@ -24,26 +24,35 @@ public class HashTable {
     }
 
     /**
-     * Inserts a value into the hash table using linear probing to handle collisions.
+     * Inserts a value into the hash table using linear probing to handle any possible collisions.
      *
-     * @param key the value to be inserted
+     * @param num the value that will be assigned.
      */
-    public void insert(int key) {
-        int hashIndex = key % TABLE_SIZE;
+    public void assign(int num) {
+        int hashIndex = num % TABLE_SIZE;
+        int startIndex = hashIndex;
 
-        // Linear probing to find the next available slot
+        // Using linear probing for collisions.
         while (hashTable[hashIndex] != null) {
+        	// Increment the hashIndex by 1 if the slot is taken by another number.
             hashIndex = (hashIndex + 1) % TABLE_SIZE;
+
+            // If the hashIndex loops back to the startIndex we stop the loop and cannot assign the num to a slot.
+            if (hashIndex == startIndex) {
+                System.out.println("Hash table is full. Cannot assign this nuumber: " + num);
+                return;
+            }
         }
 
-        hashTable[hashIndex] = key;
+        hashTable[hashIndex] = num;
     }
 
     /**
-     * Displays the contents of the hash table.
-     * Each index and its corresponding value are printed to the console.
+     * Displays the hash table.
+     * Each index and its the value assigned to its slot.
      */
-    public void displayTable() {
+    public void displayHashTable() {
+    	// Starts at i = 0 and increments by 1, as long as i is less than table_size we repeat
         for (int i = 0; i < TABLE_SIZE; i++) {
             if (hashTable[i] != null) {
                 System.out.println("Index " + i + ": " + hashTable[i]);
@@ -54,19 +63,18 @@ public class HashTable {
     }
 
     /**
-     * Main method to demonstrate the usage of the hash table with linear probing.
-     * Inserts a set of elements and displays the resulting hash table.
+     * Main method to store elements into the hash table and display it.
      *
-     * @param args command line arguments (not used)
+     * @param args command line arguments that is not used
      */
     public static void main(String[] args) {
         HashTable hashTable = new HashTable();
         int[] elements = {1, 5, 21, 26, 39, 14, 15, 16, 17, 18, 19, 20, 111, 145, 146};
 
         for (int element : elements) {
-            hashTable.insert(element);
+            hashTable.assign(element);
         }
 
-        hashTable.displayTable();
+        hashTable.displayHashTable();
     }
 }

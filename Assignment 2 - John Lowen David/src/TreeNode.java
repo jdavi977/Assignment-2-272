@@ -16,7 +16,7 @@ public class TreeNode {
      * @param value is the value of the node.
      */
     TreeNode(int value) {
-        this.value = value;
+        this.value = value;											
         left = right = parent = null;
     }
 }

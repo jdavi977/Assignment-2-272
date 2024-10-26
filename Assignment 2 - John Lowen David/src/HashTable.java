@@ -61,6 +61,15 @@ public class HashTable {
             }
         }
     }
+    
+    /**
+     * Getter method to retrieve the hash table array.
+     *
+     * @return the hash table array.
+     */
+    public Integer[] getHashTable() {
+        return hashTable;
+    }
 
     /**
      * Main method to store elements into the hash table and display it.

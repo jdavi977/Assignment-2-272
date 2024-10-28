@@ -1,5 +1,6 @@
 /**
- * Subclass of the BinaryTree that assigns numbers to nodes using PreOrder, InOrder, and PostOrder traversal.
+ * Subclass of the BinaryTree that assigns traversal numbers to nodes of a binary tree
+ * using PreOrder, InOrder, and PostOrder traversal.
  */
 public class BinaryTreeAssign extends BinaryTree {
 
@@ -41,88 +42,69 @@ public class BinaryTreeAssign extends BinaryTree {
     /**
      * Constructor to initialize the binary tree with a root value.
      * 
-     * @param rootValue Is the value to assign to the root node.
+     * @param rootValue Is the value assigned to the root node.
      */
     public BinaryTreeAssign(int rootValue) {
         this.root = new TreeNodeAssign(rootValue);
     }
 
     /**
-     * Assigns PreOrder traversal numbers.
+     * This method assigns PreOrder traversal numbers to each node.
      */
     public void preOrderNumber() {
-        // Counter is used to see the position of the number as the traversal continues.
-        int[] counter = {0};
-        preOrderNumber(root, counter);
-    }
+    	// Counter is the traversal number that increases with traversal.
+        int counter = 0;
+        TreeNodeAssign currentNode = root;
 
-    /**
-     * Helper method to assign PreOrder numbers to each node in the tree.
-     * 
-     * @param node The current node being visited.
-     * @param counter The counter used to assign the traversal numbers to the nodes.
-     */
-    private void preOrderNumber(TreeNodeAssign node, int[] counter) {
-        if (node == null) {
-            return;
+        while (currentNode != null) {
+            // Recursively traverse through the tree with PreOrder traversal.
+        	// Assigning traversal number and incrementing as we continue.
+            currentNode.preOrderNumber = counter++;
+            currentNode = (TreeNodeAssign) preorderNext(currentNode);
         }
-        // Since PreOrder starts at the root we assign it with 0 and increment by 1. 
-        node.preOrderNumber = counter[0]++;
-        // Recursively call the function going down from root -> left -> right and assigning with the correct counter.
-        preOrderNumber((TreeNodeAssign) node.left, counter);
-        preOrderNumber((TreeNodeAssign) node.right, counter);
-    }
-
-    /**
-     * Assigns InOrder traversal numbers.
-     */
-    public void inOrderNumber() {
-        int[] counter = {0};
-        inOrderNumber(root, counter);
-    }
-
-    /**
-     * Helper method to assign InOrder numbers.
-     * 
-     * @param node The current node being visited.
-     * @param counter The counter used to assign the traversal numbers to the nodes.
-     */
-    private void inOrderNumber(TreeNodeAssign node, int[] counter) {
-        if (node == null) {
-            return;
-        }
-        // Because InOrder traversal goes left -> root -> right
-        // We first traverse all the way to the bottom left child giving it a counter afterwards we work up visiting all
-        // left children and afterwards the right children.
-        inOrderNumber((TreeNodeAssign) node.left, counter);
-        node.inOrderNumber = counter[0]++;
-        inOrderNumber((TreeNodeAssign) node.right, counter);
-    }
-
-    /**
-     * Assigns PostOrder traversal numbers.
-     */
-    public void postOrderNumbers() {
-        int[] counter = {0};
-        postOrderNumbers(root, counter);
     }
     
     /**
-     * Helper method to assign PostOrder traversal numbers.
-     * 
-     * @param node The current node being visited.
-     * @param counter The counter used to assign the traversal numbers to the nodes.
+     * This method assigns PostOrder traversal numbers to each node.
      */
-    private void postOrderNumbers(TreeNodeAssign node, int[] counter) {
-        if (node == null) {
-            return;
+    public void postOrderNumbers() {
+        int counter = 0;
+        TreeNodeAssign currentNode = root;
+
+        // Recursively traverse to the leftmost leaf node first because PostOrder is left -> right -> root
+        while (currentNode.left != null || currentNode.right != null) {
+            if (currentNode.left != null) {
+                currentNode = (TreeNodeAssign) currentNode.left;
+            } else {
+                currentNode = (TreeNodeAssign) currentNode.right;
+            }
         }
-        // PostOrder traversal goes left -> right -> root
-        // Because of this we make our way to the bottom left child and check if it has any children
-        // If it does not we assign the counter and move upwards.
-        postOrderNumbers((TreeNodeAssign) node.left, counter);
-        postOrderNumbers((TreeNodeAssign) node.right, counter);
-        node.postOrderNumber = counter[0]++;
+
+        // Use postorderNext to assign numbers to nodes in post-order traversal
+        while (currentNode != null) {
+            currentNode.postOrderNumber = counter++;
+            currentNode = (TreeNodeAssign) postorderNext(currentNode);
+        }
+    }
+
+    /**
+     * This method assigns InOrder traversal numbers to each node.
+     */
+    public void inOrderNumber() {
+        int counter = 0;
+        TreeNodeAssign currentNode = root;
+        
+        // Because InOrder goes left -> root -> right we traverse to the leftmost node first
+        while (currentNode.left != null) {
+            currentNode = (TreeNodeAssign) currentNode.left;
+        }
+
+        // Now that we are at the leftmost node, we recursively traverse the binary tree using inorderNext 
+        // and assign numbers to nodes in in-order traversal
+        while (currentNode != null) {
+            currentNode.inOrderNumber = counter++;
+            currentNode = (TreeNodeAssign) inorderNext(currentNode);
+        }
     }
     
     /**

@@ -17,6 +17,12 @@ public class BinaryTreeAssignTest {
         tree.getRoot().right = new BinaryTreeAssign.TreeNodeAssign(3);
         tree.getRoot().left.left = new BinaryTreeAssign.TreeNodeAssign(4);
         tree.getRoot().left.right = new BinaryTreeAssign.TreeNodeAssign(5);
+        
+        // Set parent relationships
+        tree.getRoot().left.parent = tree.getRoot();
+        tree.getRoot().right.parent = tree.getRoot();
+        tree.getRoot().left.left.parent = tree.getRoot().left;
+        tree.getRoot().left.right.parent = tree.getRoot().left;
 
         tree.preOrderNumber();
 
@@ -37,6 +43,12 @@ public class BinaryTreeAssignTest {
         tree.getRoot().right = new BinaryTreeAssign.TreeNodeAssign(3);
         tree.getRoot().left.left = new BinaryTreeAssign.TreeNodeAssign(4);
         tree.getRoot().left.right = new BinaryTreeAssign.TreeNodeAssign(5);
+        
+        // Set parent relationships
+        tree.getRoot().left.parent = tree.getRoot();
+        tree.getRoot().right.parent = tree.getRoot();
+        tree.getRoot().left.left.parent = tree.getRoot().left;
+        tree.getRoot().left.right.parent = tree.getRoot().left;
 
         tree.inOrderNumber();
 
@@ -57,6 +69,12 @@ public class BinaryTreeAssignTest {
         tree.getRoot().right = new BinaryTreeAssign.TreeNodeAssign(3);
         tree.getRoot().left.left = new BinaryTreeAssign.TreeNodeAssign(4);
         tree.getRoot().left.right = new BinaryTreeAssign.TreeNodeAssign(5);
+        
+        // Set parent relationships
+        tree.getRoot().left.parent = tree.getRoot();
+        tree.getRoot().right.parent = tree.getRoot();
+        tree.getRoot().left.left.parent = tree.getRoot().left;
+        tree.getRoot().left.right.parent = tree.getRoot().left;
 
         tree.postOrderNumbers();
 

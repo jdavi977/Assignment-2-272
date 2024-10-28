@@ -9,7 +9,7 @@ public class HashTableTest {
 
     /**
      * Tests the assign method of the HashTable class checking if the values are assigned properly.
-     * Also checks how if collisions are properly avoided using linear probing.
+     * Also checks if collisions are properly avoided using linear probing.
      */
     @Test
     public void testAssignandCollision() {

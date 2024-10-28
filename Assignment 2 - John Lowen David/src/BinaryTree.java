@@ -4,12 +4,12 @@
 
 public class BinaryTree {
 	/**
-	 * Finds the next node through pre-order traversal.
+	 * Finds the next node through PreOrder traversal.
 	 * @param node is the current node
-	 * @return the next node through pre-order traversal.
+	 * @return the next node through PreOrder traversal.
 	 */
     public static TreeNode preorderNext(TreeNode node) {
-    	// Since pre-order traversal works down the root -> left child -> right child we first check the left node.
+    	// Since PreOrder traversal works down the root -> left -> right we first check the left node.
         if (node.left != null) {
             return node.left;
         } else if (node.right != null) {
@@ -31,12 +31,12 @@ public class BinaryTree {
     }
 
     /**
-     * Finds the next node through post-order traversal.
+     * Finds the next node through PostOrder traversal.
      * @param node is the current node
-     * @return the next node through post-order traversal.
+     * @return the next node through PostOrder traversal.
      */
     public static TreeNode postorderNext(TreeNode node) {
-    	// Since in post-order traversal we start at the bottom left -> right -> root, if we start at the root, traversal ends.
+    	// Since in PostOrder traversal we start at the bottom left -> right -> root, if we start at the root, traversal ends.
         if (node.parent == null) {
             return null; 
         }
@@ -61,12 +61,12 @@ public class BinaryTree {
     }
     
     /**
-     * Finds the next node through in-order traversal.
+     * Finds the next node through InOrder traversal.
      * @param node is the current node
-     * @return the next node through in-order traversal.
+     * @return the next node through InOrder traversal.
      */
     public static TreeNode inorderNext(TreeNode node) {
-    	// In-order traversal goes left -> root -> right
+    	// InOrder traversal goes left -> root -> right
     	// We first start by checking if the node has a right child.
         if (node.right != null) {
         	// If there is a right child, we check if there is a left child to the right child, if there is we 

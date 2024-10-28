@@ -3,45 +3,65 @@
  */
 public class BinaryTreeAssign extends BinaryTree {
 
-    // Define the TreeNodeAssign with fields to store PreOrder, InOrder, and PostOrder numbers
+    /**
+     * A class that extends TreeNode to add fields for storing pre-order, in-order, and post-order numbers.
+     */
     static class TreeNodeAssign extends TreeNode {
+        /**
+         * Assigned number during PreOrder traversal.
+         */
         int preOrderNumber;
+        
+        /**
+         * Assigned number during InOrder traversal.
+         */
         int inOrderNumber;
+        
+        /**
+         * Assigned number during PostOrder traversal.
+         */
         int postOrderNumber;
         
-        // Initialize the node's value using the constructor in the TreeNode class
+        /**
+         * Constructor to initialize the node's value.
+         * 
+         * @param value Is the assigned value of the node.
+         */
         public TreeNodeAssign(int value) {
             super(value);
         }
     }
     
-    // Getter for root
-    public TreeNodeAssign getRoot() {
-        return root;
-    }
-
-    // Setter for root
-    public void setRoot(TreeNodeAssign root) {
-        this.root = root;
-    }
-
-    // Root node of the BinaryTreeAssign
+    /**
+     * The root node of the BinaryTreeAssign.
+     */
     private TreeNodeAssign root;
+    
 
-    // Initialize the root node with a value
+    /**
+     * Constructor to initialize the binary tree with a root value.
+     * 
+     * @param rootValue Is the value to assign to the root node.
+     */
     public BinaryTreeAssign(int rootValue) {
         this.root = new TreeNodeAssign(rootValue);
     }
 
     /**
-     * Assigns PreOrder numbers to each node.
+     * Assigns PreOrder traversal numbers.
      */
     public void preOrderNumber() {
-    	// Counter is used to see the position of the number as the traversal continues.
+        // Counter is used to see the position of the number as the traversal continues.
         int[] counter = {0};
         preOrderNumber(root, counter);
     }
 
+    /**
+     * Helper method to assign PreOrder numbers to each node in the tree.
+     * 
+     * @param node The current node being visited.
+     * @param counter The counter used to assign the traversal numbers to the nodes.
+     */
     private void preOrderNumber(TreeNodeAssign node, int[] counter) {
         if (node == null) {
             return;
@@ -54,13 +74,19 @@ public class BinaryTreeAssign extends BinaryTree {
     }
 
     /**
-     * Assigns InOrder numbers to each node.
+     * Assigns InOrder traversal numbers.
      */
     public void inOrderNumber() {
         int[] counter = {0};
         inOrderNumber(root, counter);
     }
 
+    /**
+     * Helper method to assign InOrder numbers.
+     * 
+     * @param node The current node being visited.
+     * @param counter The counter used to assign the traversal numbers to the nodes.
+     */
     private void inOrderNumber(TreeNodeAssign node, int[] counter) {
         if (node == null) {
             return;
@@ -74,13 +100,19 @@ public class BinaryTreeAssign extends BinaryTree {
     }
 
     /**
-     * Assigns PostOrder numbers to each node.
+     * Assigns PostOrder traversal numbers.
      */
     public void postOrderNumbers() {
         int[] counter = {0};
         postOrderNumbers(root, counter);
     }
     
+    /**
+     * Helper method to assign PostOrder traversal numbers.
+     * 
+     * @param node The current node being visited.
+     * @param counter The counter used to assign the traversal numbers to the nodes.
+     */
     private void postOrderNumbers(TreeNodeAssign node, int[] counter) {
         if (node == null) {
             return;
@@ -91,5 +123,14 @@ public class BinaryTreeAssign extends BinaryTree {
         postOrderNumbers((TreeNodeAssign) node.left, counter);
         postOrderNumbers((TreeNodeAssign) node.right, counter);
         node.postOrderNumber = counter[0]++;
+    }
+    
+    /**
+     * Getter method to retrieve the root node of the binary tree.
+     * 
+     * @return The root node of the binary tree.
+     */
+    public TreeNodeAssign getRoot() {
+        return root;
     }
 }

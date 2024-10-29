@@ -27,7 +27,8 @@ public class BinaryTreeAssignTest {
 
         // Assign the traversal numbers
         tree.preOrderNumber();
-
+        
+        // Check if the values are correct
         assertEquals(0, tree.getRoot().preOrderNumber);
         assertEquals(1, ((BinaryTreeAssign.TreeNodeAssign) tree.getRoot().left).preOrderNumber);
         assertEquals(2, ((BinaryTreeAssign.TreeNodeAssign) tree.getRoot().left.left).preOrderNumber);
@@ -55,7 +56,8 @@ public class BinaryTreeAssignTest {
         
         // Assign the traversal numbers
         tree.inOrderNumber();
-
+        
+        // Check if the values are correct
         assertEquals(0, ((BinaryTreeAssign.TreeNodeAssign) tree.getRoot().left.left).inOrderNumber);
         assertEquals(1, ((BinaryTreeAssign.TreeNodeAssign) tree.getRoot().left).inOrderNumber);
         assertEquals(2, ((BinaryTreeAssign.TreeNodeAssign) tree.getRoot().left.right).inOrderNumber);
@@ -84,6 +86,7 @@ public class BinaryTreeAssignTest {
         // Assign the traversal numbers
         tree.postOrderNumbers();
 
+        // Check if the values are correct
         assertEquals(0, ((BinaryTreeAssign.TreeNodeAssign) tree.getRoot().left.left).postOrderNumber);
         assertEquals(1, ((BinaryTreeAssign.TreeNodeAssign) tree.getRoot().left.right).postOrderNumber);
         assertEquals(2, ((BinaryTreeAssign.TreeNodeAssign) tree.getRoot().left).postOrderNumber);

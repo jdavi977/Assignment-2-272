@@ -26,6 +26,7 @@ public class HashTableTest {
         expectedTable[2] = 14; // Linear probing puts values in the next available slot.
         expectedTable[3] = 27;
 
+        // Check if the values are correct
         assertArrayEquals(expectedTable, hashTable.getHashTable());
     }
 

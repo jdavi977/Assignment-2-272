@@ -39,7 +39,7 @@ public class HashTable {
 
             // If the hashIndex loops back to the startIndex we stop the loop and cannot assign the num to a slot.
             if (hashIndex == startIndex) {
-                System.out.println("Hash table is full. Cannot assign this nuumber: " + num);
+                System.out.println("Hash table is full. Cannot assign the number: " + num);
                 return;
             }
         }

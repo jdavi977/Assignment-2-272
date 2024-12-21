@@ -110,6 +110,7 @@ public class BinaryTreeTest {
         root.left = node4;
         node4.parent = root;
         
+        // Checks if the search tree order proper is not satisfied.
         assertFalse(BinaryTree.propertyChecker(root));
     }
 } 

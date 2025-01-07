@@ -12,7 +12,7 @@ public class HashTableTest {
      * Also checks if collisions are properly avoided using linear probing.
      */
     @Test
-    public void testAssignandCollision() {
+    public void testAssignAndCollision() {
     	// Create a hash table and assign values to it.
         HashTable hashTable = new HashTable();
         // Testing collision using linear probing.
